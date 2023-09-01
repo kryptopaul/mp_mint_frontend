@@ -2,7 +2,7 @@ import { Card, Paper, Title, Text, Button, Image } from "@mantine/core";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { usePrepareContractWrite, useContractWrite, useNetwork, useSwitchNetwork } from 'wagmi'
+import { usePrepareContractWrite, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi'
 import { abi } from './abi/abi'
 import { parseEther } from "viem";
 
@@ -16,7 +16,7 @@ export default function MintPanel({ address }: Address) {
 
     const [frenMintLoading, setFrenMintLoading] = useState<boolean>(false)
     const [mintLoading, setMintLoading] = useState<boolean>(false)
-
+    const [hash, setHash] = useState<`0x${string}`>("0x")
     const [signature, setSignature] = useState<string>("")
     const apiEndpoint = "https://miladypl-sig.azurewebsites.net/sig"
 
@@ -45,9 +45,13 @@ export default function MintPanel({ address }: Address) {
         catch (e) {
             console.log(e)
         }
-       
+
     }
 
+
+    const { data: txHashData, isError, isLoading: txIsLoading } = useWaitForTransaction({
+        hash: hash
+    })
 
     const { config: frenConfig, error: frenError } = usePrepareContractWrite({
         address: '0x27393B401A9a69Bb7197109C4A5f45c8Ea78839E',
@@ -60,9 +64,9 @@ export default function MintPanel({ address }: Address) {
         abi: abi, // to be filled
         functionName: 'FrensMint',
         // chainId: 1,
-        onSuccess: () => {
+        onSuccess: (data) => {
             setFrenMintLoading(false)
-            alert("Minted!")
+            setHash(data.hash)
         },
         onError: () => {
             setFrenMintLoading(false)
@@ -81,9 +85,9 @@ export default function MintPanel({ address }: Address) {
         abi: abi, // to be filled
         functionName: 'mint',
         // chainId: 1,
-        onSuccess: () => {
+        onSuccess: (data) => {
             setFrenMintLoading(false)
-            alert("Minted!")
+            setHash(data.hash)
         },
         onError: () => {
             setMintLoading(false)
@@ -107,6 +111,17 @@ export default function MintPanel({ address }: Address) {
         }
     }, [address])
 
+    useEffect(() => {
+        if (txHashData) {
+            console.log("seems confirmed")
+            console.log(txHashData)
+            setFrenMintLoading(false)
+            setMintLoading(false)
+            alert("Minted!")
+        }
+    }, [txHashData])
+
+
     return (
         <div style={{
             justifyContent: 'center',
@@ -121,15 +136,15 @@ export default function MintPanel({ address }: Address) {
                 <Text>{signature === "Not a fren" ? "" : signature === "" ? "Checking eligility..." : "Milady / thePolak detected: - free mint"}</Text>
                 <br />
                 <div style={{
-                       justifyContent: 'center',
-                       alignItems: 'center',
-                       flexDirection: 'row',
-                       display: 'flex',
-                       textAlign: 'center'
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    display: 'flex',
+                    textAlign: 'center'
                 }}>
-                <Button loading={frenMintLoading} disabled={signature === "Not a fren" || signature === ""} size="lg" mr={10} onClick={handleFrenMint} >Friends Mint (Free)</Button>
+                    <Button loading={frenMintLoading} disabled={signature === "Not a fren" || signature === ""} size="lg" mr={10} onClick={handleFrenMint} >Friends Mint (Free)</Button>
 
-                <Button size="lg" ml={10} loading={mintLoading} onClick={handleMint}>Mint (0.03 ETH)</Button>
+                    <Button size="lg" ml={10} loading={mintLoading} onClick={handleMint}>Mint (0.03 ETH)</Button>
                 </div>
 
             </Card>

@@ -1,4 +1,4 @@
-import { createStyles, Container, Group, Anchor, rem, Title } from '@mantine/core';
+import { createStyles, Container, Group, Anchor, rem, Title, Image, Text } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -48,7 +48,9 @@ export function FooterSimple({ links }: FooterSimpleProps) {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-            <Title>Dupa</Title>
+      <Image src={"/logo.png"} width={300} />
+      <Text><span style={{color: '#1a1b1e'}}>please help me i'm held in a basement against my will being fed one pieróg daily</span></Text>
+
         <Group className={classes.links}>{items}</Group>
       </Container>
     </div>
