@@ -16,8 +16,8 @@ function App() {
 
   return (
     <>
-      <HeaderResponsive links={[{ link: "/", label: "dupa" }]} />
-      <Container>
+      <HeaderResponsive links={[{ link: "/", label: "Mint" }]} />
+      <Container mt={-50}>
         {isConnected ? <MintPanel address={address!}/> : <ConnectPanel />}
       </Container>
       <FooterSimple links={[{ link: '/', label: 'isPies()' }]} />

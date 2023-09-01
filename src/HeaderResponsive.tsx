@@ -9,6 +9,7 @@ import {
     Transition,
     rem,
     Title,
+    Image
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -110,7 +111,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
     return (
         <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
             <Container className={classes.header}>
-                <Title>Dupa</Title>
+            <Image src={"/logo.png"} width={300} />
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>

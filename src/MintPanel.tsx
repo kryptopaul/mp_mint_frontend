@@ -115,12 +115,10 @@ export default function MintPanel({ address }: Address) {
             display: 'flex',
             textAlign: 'center'
         }}>
-            <Card shadow="sm" maw={600} padding={50} style={{
-                
-            }}>
+            <Card shadow="sm" maw={600} padding={50}>
                 <Image src={'./50.png'} />
                 <br />
-                <Text>{signature === "Not a fren" ? "Not a fren - paid mint" : "Fren detected - free mint"}</Text>
+                <Text>{signature === "Not a fren" ? "" : signature === "" ? "Checking eligility..." : "Milady / thePolak detected: - free mint"}</Text>
                 <br />
                 <div style={{
                        justifyContent: 'center',
@@ -129,7 +127,7 @@ export default function MintPanel({ address }: Address) {
                        display: 'flex',
                        textAlign: 'center'
                 }}>
-                <Button loading={frenMintLoading} disabled={signature === "Not a fren"} size="lg" mr={10} onClick={handleFrenMint} >Friends Mint (Free)</Button>
+                <Button loading={frenMintLoading} disabled={signature === "Not a fren" || signature === ""} size="lg" mr={10} onClick={handleFrenMint} >Friends Mint (Free)</Button>
 
                 <Button size="lg" ml={10} loading={mintLoading} onClick={handleMint}>Mint (0.03 ETH)</Button>
                 </div>
