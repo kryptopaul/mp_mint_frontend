@@ -133,7 +133,7 @@ export default function MintPanel({ address }: Address) {
             textAlign: 'center'
         }}>
             <Card shadow="sm" maw={600} padding={50}>
-                <Image src={'./50.png'} />
+                <Image src={'./preview.gif'} />
                 <br />
                 <Text>{signature === "Not a fren" ? "" : signature === "" ? "Checking eligility..." : "Milady / thePolak detected: - free mint"}</Text>
                 <br />

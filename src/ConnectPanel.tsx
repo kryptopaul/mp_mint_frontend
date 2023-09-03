@@ -12,7 +12,7 @@ export default function ConnectPanel() {
         }}>
             <Card shadow="sm" maw={600} padding={50}>
             <br/>
-            <Image src={'./50.png'} />
+            <Image src={'./preview.gif'} />
             <br/>
                 <Title>Connect your wallet</Title>
                 <Text>all your holdings are definitely safe with us</Text>
