@@ -24,7 +24,8 @@ export default function MintPanel({ address }: Address) {
         try {
             setFrenMintLoading(true)
             frenWrite({
-                args: [1, signature]
+                args: [1, signature],
+                gas: BigInt(200000)
             })
         }
         catch (e) {
@@ -39,7 +40,8 @@ export default function MintPanel({ address }: Address) {
             setMintLoading(true)
             write({
                 value: parseEther('0.03'),
-                args: [1]
+                args: [1],
+                gas: BigInt(200000)
             })
         }
         catch (e) {
