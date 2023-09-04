@@ -54,14 +54,14 @@ export default function MintPanel({ address }: Address) {
     })
 
     const { config: frenConfig, error: frenError } = usePrepareContractWrite({
-        address: '0xCd8Cb673bD3c880f54e38681f39bEF6F4Bc5950f',
+        address: '0x18bA7D626d1B0D5385d1164DB1C8B65Db3639141',
         abi: abi, // to be filled
         functionName: 'FrensMint',
         chainId: 1,
     })
 
     const { data: frenData, isLoading: frenIsLoading, isSuccess: frenIsSuccess, write: frenWrite } = useContractWrite({
-        address: '0xCd8Cb673bD3c880f54e38681f39bEF6F4Bc5950f',
+        address: '0x18bA7D626d1B0D5385d1164DB1C8B65Db3639141',
         abi: abi, // to be filled
         functionName: 'FrensMint',
         chainId: 1,
@@ -76,14 +76,14 @@ export default function MintPanel({ address }: Address) {
     })
 
     const { config, error } = usePrepareContractWrite({
-        address: '0xCd8Cb673bD3c880f54e38681f39bEF6F4Bc5950f',
+        address: '0x18bA7D626d1B0D5385d1164DB1C8B65Db3639141',
         abi: abi, // to be filled,
         chainId: 1,
         functionName: 'FrensMint'
     })
 
     const { data, isLoading, isSuccess, write } = useContractWrite({
-        address: '0xCd8Cb673bD3c880f54e38681f39bEF6F4Bc5950f',
+        address: '0x18bA7D626d1B0D5385d1164DB1C8B65Db3639141',
         abi: abi, // to be filled
         functionName: 'mint',
         chainId: 1,
