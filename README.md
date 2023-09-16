@@ -6,4 +6,4 @@ Tech stack: Wagmi.sh, RainbowKit, Mantine UI, Typescript.
 
 Link: https://mint.miladypoland.com/
 
-![image](https://github.com/kryptopaul/mp_mint_frontend/assets/87016182/ffb055aa-e92d-4896-8e14-897ec647598e)
+![image](https://i.imgur.com/XKe4N63.png)
